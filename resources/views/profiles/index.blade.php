@@ -1,12 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Profile | Rental Buku</title>
-</head>
-<body>
-    <p>Ini Halaman Profile User</p>
-</body>
-</html>
+@extends('layouts.main')
+
+@section('content')
+<p>
+    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestiae dolorem debitis consectetur reiciendis similique. Voluptatem, eligendi recusandae deserunt suscipit placeat voluptate possimus natus adipisci molestias, ex quia ducimus earum at omnis molestiae consequuntur! Nobis repellat ipsum aspernatur aliquid? Necessitatibus at nemo animi commodi voluptatum ducimus excepturi neque eveniet expedita assumenda ea quibusdam quia dolorem asperiores rem officiis, illum qui. Laudantium deleniti facilis tenetur sint commodi neque ipsa ut nihil. Dignissimos tenetur, reiciendis quo sint tempora perspiciatis possimus adipisci dolorem minima, rerum sit iste unde laborum obcaecati nihil a laudantium quos? Sed quidem tempore temporibus delectus? Aliquid laborum, nostrum nobis enim quasi, incidunt, iusto consequatur iste doloribus dolorem quia! Dolorum perspiciatis, voluptates illo repellat atque quaerat debitis impedit autem omnis delectus labore obcaecati. Eum quisquam dicta illum placeat explicabo maxime libero quos dolorum doloribus molestias sit alias rerum assumenda aliquam dolorem, commodi numquam molestiae. Animi distinctio quos reprehenderit placeat quo, dicta corporis pariatur blanditiis porro aspernatur, nostrum rem sequi soluta cum officiis ex architecto, libero obcaecati maiores est assumenda deleniti nam eum? Quibusdam quas sapiente debitis illo atque fuga veniam explicabo aliquam soluta eos hic id accusantium consectetur molestiae quod deserunt rem, amet eligendi, assumenda alias! Doloribus quidem distinctio laboriosam ullam!
+</p>
+@endsection

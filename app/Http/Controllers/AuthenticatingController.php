@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class AuthenticatingController extends Controller
 {
@@ -22,6 +24,25 @@ class AuthenticatingController extends Controller
         return view('auth.register', ['title' => $title]);
     }
 
+    public function registerAction(Request $request)
+    {
+        $validate = $request->validate([
+            'username'  => ['required', 'unique:users', 'max:100'],
+            'password'  => ['required', 'max:50'],
+            'phone'     => ['required', 'max:13'],
+            'address'   => ['required', 'max:60'],
+        ]);
+
+        $validate['password'] = Hash::make($validate['password']);
+
+        User::create($validate);
+
+        Session::flash('success', 'success');
+        Session::flash('message', 'Registration success pleas contact admin for approved your account!');
+
+        return redirect('login');
+    }
+
     public function authenticate(Request $request)
     {
         $credentials = $request->validate([
@@ -33,6 +54,10 @@ class AuthenticatingController extends Controller
         if (Auth::attempt($credentials)) {
             // cek apakah status user active ?
             if (Auth::user()->status != 'active') {
+                Auth::logout();
+                $request->session()->invalidate();
+                $request->session()->regenerateToken();
+
                 Session::flash('status', 'Failed!');
                 Session::flash('message', 'Your Account is not active yet, pleas contact Admin!');
                 return redirect('/login');

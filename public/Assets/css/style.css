@@ -1,0 +1,25 @@
+body {
+    font-family: "Montserrat", sans-serif;
+}
+
+.main {
+    height: 100vh;
+}
+
+.sidebar {
+    background-color: #434343;
+}
+
+.sidebar a {
+    text-decoration: none;
+    display: block;
+    color: #f7f7f7;
+    padding: 15px 10px;
+}
+
+.sidebar a:hover {
+    border-radius: 0 25px 25px 0;
+    background-color: #838080;
+    font-weight: 700;
+    color: #fff;
+}

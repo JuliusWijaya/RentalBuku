@@ -17,11 +17,11 @@
             box-sizing: border-box;
         }
 
-        .login-box {
+        .login-box, .register-box {
             width: 500px;
-            border: 1px solid #333;
+            border: 1px solid #d5d5d5;
             padding: 30px;
-            background: rgba(247, 247, 247, 0.6);
+            background: rgba(247, 247, 247, 0.8);
         }
 
         form div {
