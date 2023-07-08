@@ -10,16 +10,55 @@ body {
     background-color: #434343;
 }
 
-.sidebar a {
+.sidebar .links {
     text-decoration: none;
     display: block;
     color: #f7f7f7;
     padding: 15px 10px;
 }
 
-.sidebar a:hover {
+.sidebar .links:hover {
     border-radius: 0 25px 25px 0;
     background-color: #838080;
     font-weight: 700;
     color: #fff;
+}
+
+.active {
+    border-radius: 0 25px 25px 0;
+    border-left: 5px solid salmon;
+    background-color: #838080;
+    font-weight: 700;
+    color: #fff;
+}
+
+.card-data {
+    padding: 20px 45px;
+    color: #f7f7f7;
+}
+
+.card-data.book {
+    background-color: #00afb9;
+}
+
+.card-data.category {
+    background-color: #f07167;
+}
+
+.card-data.user {
+    background-color: #0077b6;
+}
+
+.card-data i {
+    font-size: 80px;
+}
+
+.card-description {
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.card-count {
+    font-size: 30px;
+    font-weight: 500;
 }

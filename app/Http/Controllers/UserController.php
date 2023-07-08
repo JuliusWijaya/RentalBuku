@@ -8,6 +8,6 @@ class UserController extends Controller
 {
     public function index()
     {
-        return view('profiles.index', ['title' => 'Rental Buku | Profile']);
+        return view('users.index', ['title' => 'Rental Buku | User']);
     }
 }

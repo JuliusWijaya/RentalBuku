@@ -1,7 +1,68 @@
 @extends('layouts.main')
 
 @section('content')
-<p>
-    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestiae dolorem debitis consectetur reiciendis similique. Voluptatem, eligendi recusandae deserunt suscipit placeat voluptate possimus natus adipisci molestias, ex quia ducimus earum at omnis molestiae consequuntur! Nobis repellat ipsum aspernatur aliquid? Necessitatibus at nemo animi commodi voluptatum ducimus excepturi neque eveniet expedita assumenda ea quibusdam quia dolorem asperiores rem officiis, illum qui. Laudantium deleniti facilis tenetur sint commodi neque ipsa ut nihil. Dignissimos tenetur, reiciendis quo sint tempora perspiciatis possimus adipisci dolorem minima, rerum sit iste unde laborum obcaecati nihil a laudantium quos? Sed quidem tempore temporibus delectus? Aliquid laborum, nostrum nobis enim quasi, incidunt, iusto consequatur iste doloribus dolorem quia! Dolorum perspiciatis, voluptates illo repellat atque quaerat debitis impedit autem omnis delectus labore obcaecati. Eum quisquam dicta illum placeat explicabo maxime libero quos dolorum doloribus molestias sit alias rerum assumenda aliquam dolorem, commodi numquam molestiae. Animi distinctio quos reprehenderit placeat quo, dicta corporis pariatur blanditiis porro aspernatur, nostrum rem sequi soluta cum officiis ex architecto, libero obcaecati maiores est assumenda deleniti nam eum? Quibusdam quas sapiente debitis illo atque fuga veniam explicabo aliquam soluta eos hic id accusantium consectetur molestiae quod deserunt rem, amet eligendi, assumenda alias! Doloribus quidem distinctio laboriosam ullam!
-</p>
+<h3>Welcome, {{ auth()->user()->username }}</h3>
+<div class="row mt-4">
+    <div class="col-lg-4">
+        <div class="card-data book">
+            <div class="row">
+                <div class="col-6">
+                    <i class="bi bi-journal-bookmark"></i>
+                </div>
+                <div class="col-6 d-flex flex-column justify-content-center align-items-end">
+                    <div class="card-description">Books</div>
+                    <div class="card-count">{{ $books }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="card-data category">
+            <div class="row">
+                <div class="col-6">
+                    <i class="bi bi-list-task"></i>
+                </div>
+                <div class="col-6 d-flex flex-column justify-content-center align-items-end">
+                    <div class="card-description">Categories</div>
+                    <div class="card-count">{{ $categories }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="card-data user">
+            <div class="row">
+                <div class="col-6">
+                    <i class="bi bi-people"></i>
+                </div>
+                <div class="col-6 d-flex flex-column justify-content-center align-items-end">
+                    <div class="card-description">User</div>
+                    <div class="card-count">{{ $users }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-4">
+        <h2>#Rent Log</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>NO</th>
+                    <th>NAME</th>
+                    <th>TITLE BOOK</th>
+                    <th>RENT DATE</th>
+                    <th>RETURN DATE</th>
+                    <th>ACTUAL DATE</th>
+                    <th>STATUS</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td colspan="7" class="text-center text-danger fs-5 fw-semibold">No Data</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 @endsection

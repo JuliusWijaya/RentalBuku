@@ -8,7 +8,7 @@
             </button>
             <ul class="navbar-nav" style="margin-right: 30px;">
                 <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="/profile">{{ auth()->user()->username }}</a>
+                  <a class="nav-link fw-bold" aria-current="page" href="/profile">{{ auth()->user()->username }}</a>
                 </li>
             </ul>
         </div>
@@ -18,15 +18,15 @@
         <div class="row g-0 h-100">
             <div class="sidebar col-lg-2 collapse d-lg-block text-white" id="navbarNav">
                     @if (auth()->user()->role_id == 1)
-                        <a href="/dashboard">Dashboard</a>
-                        <a href="/books">Books</a>
-                        <a href="/categories">Categories</a>
-                        <a href="/user">User</a>
-                        <a href="/rent-log">Rent Log</a>
-                        <a href="/logout">Logout</a>
+                        <a href="/dashboard" class="links {{ (Request::is('dashboard*') ? 'active' : '') }}">Dashboard</a>
+                        <a href="/books" class="links {{ (Request::is('books*') ? 'active' : '') }}">Books</a>
+                        <a href="/categories" class="links {{ (Request::is('categories*') ? 'active' : '') }}">Categories</a>
+                        <a href="/users" class="links {{ (Request::is('users*') ? 'active' : '') }}">User</a>
+                        <a href="/rent-logs" class="links {{ (Request::is('rent-logs*') ? 'active' : '') }}">Rent Log</a>
+                        <a href="/logout" class="links {{ (Request::is('logout*') ? 'active' : '') }}">Logout</a>
                     @else
-                        <a href="/profile">Profile</a>
-                        <a href="/logout">Logout</a>
+                        <a href="/profile" class="links {{ (Request::is('profile*') ? 'active' : '') }}">Profile</a>
+                        <a href="/logout" class="links {{ (Request::is('logout*') ? 'active' : '') }}">Logout</a>
                     @endif
             </div>
             <div class="content col-lg-9 p-4">
