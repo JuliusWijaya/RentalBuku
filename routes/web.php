@@ -33,10 +33,14 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('dashboard', [DashboardController::class, 'index'])->middleware('only_admin');
     Route::get('profile', [UserController::class, 'index'])->middleware('only_client');
-    Route::get('books', [BookController::class, 'index']);
+
+    Route::resource('books', BookController::class);
+    Route::get('/books/{slug}/edit', [BookController::class, 'edit']);
 
     Route::resource('categories', CategoryController::class);
     Route::get('/categories/{slug}/edit', [CategoryController::class, 'edit']);
+    Route::get('/category/list-delete', [CategoryController::class, 'deleteCategory']);
+    Route::get('/category/{slug}/restore', [CategoryController::class, 'restore']);
 
     Route::get('users', [UserController::class, 'index']);
     Route::get('rent-logs', [RentLogController::class, 'index']);

@@ -14,7 +14,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
+        $categories = Category::latest()->get();
 
         return view('categories.index', [
             'title' => 'Rental Buku | Category',
@@ -59,7 +59,6 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        //
     }
 
     /**
@@ -70,9 +69,8 @@ class CategoryController extends Controller
      */
     public function edit($slug)
     {
+        $title    = 'Rental Buku | Edit Category';
         $category = Category::where('slug', $slug)->first();
-
-        $title = 'Rental Buku | Edit';
 
         return view('categories.edit', [
             'title'     => $title,
@@ -89,16 +87,19 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        $rules = ['name', 'slug'];
+        $rules = ['name'];
 
         if ($request->name != $category->name) {
             $rules['name'] = 'required|unique:categories|max:100';
         }
 
-        $validateData = $request->validate($rules);
-        $category->slug = $validateData['name'];
+        $validateData = $request->validate([
+            'name'  => 'required|max:100|unique:categories',
+        ]);
 
-        Category::where('id', $category->id)
+        $validateData = $request->validate($rules);
+
+        Category::where('slug', $category->slug)
             ->update($validateData);
 
         return redirect('/categories')->with('success', 'Categories successfully edit');
@@ -115,5 +116,22 @@ class CategoryController extends Controller
         Category::destroy($category->id);
 
         return redirect('/categories')->with('success', 'Category Has Been Delete!');
+    }
+
+    public function deleteCategory()
+    {
+        $categories = Category::onlyTrashed()->get();
+
+        return view('categories.deleted', [
+            'title'         => 'Rental Buku | List Delete',
+            'categories'    => $categories,
+        ]);
+    }
+
+    public function restore($slug)
+    {
+        $deleteCategory = Category::withTrashed()->where('slug', $slug)->restore();
+
+        return redirect('/categories')->with('success', 'Category Has Been Restore!');
     }
 }

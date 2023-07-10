@@ -1,7 +1,8 @@
 @extends('layouts.main')
 
 @section('content')
-<h2>Add New Categories</h2>
+<h2 class="text-center">Add New Categories</h2>
+<hr>
 <div class="row mt-5">
     <div class="col-lg-6">
         <form action="{{ route('categories.store') }}" method="POST">
