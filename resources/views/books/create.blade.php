@@ -17,6 +17,7 @@
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
+            
             <div class="mb-2">
                 <label for="title" class="form-label"><Strong>Title</Strong></label>
                 <input type="text" class="form-control @error('title') is-invalid @enderror" name="title" id="title"
@@ -25,14 +26,17 @@
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
+
             <div class="mb-3">
                 <label for="images" class="form-label"><Strong>Cover</Strong></label>
+                <img class="img-preview img-fluid col-sm-3 mb-3">
                 <input type="file" class="form-control @error('images') is-invalid @enderror" name="images" id="images"
-                    placeholder="Cover Book">
+                    placeholder="Cover Book" onchange="previewImage()">
                 @error('images')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
+
             <div class="mb-3">
                 <label for="category" class="form-label"><Strong>Category</Strong></label>
                 <select name="categories[]" id="category" class="form-select select-multiple" multiple>
@@ -44,6 +48,7 @@
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
+
             <div class="mt-4">
                 <a href="/books" class="btn btn-secondary me-3">Cancel</a>
                 <button type="submit" class="btn btn-primary">Save</button>
@@ -59,5 +64,17 @@
         $('.select-multiple').select2();
     });
 
+    function previewImage(){
+        const image = document.getElementById('images');
+        const imgPreview = document.querySelector('.img-preview')
+
+        imgPreview.style.display = 'block';
+        const oFReader = new FileReader();
+        oFReader.readAsDataURL(image.files[0]);
+
+        oFReader.onload = function(oFREvent) {
+            imgPreview.src = oFREvent.target.result;
+        }
+    }
 </script>
 @endsection

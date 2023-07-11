@@ -14,8 +14,7 @@
             <div class="mb-2">
                 <label for="book_code" class="form-label"><Strong>Code Book</Strong></label>
                 <input type="text" class="form-control @error('book_code') is-invalid @enderror" name="book_code"
-                    id="book_code" value="{{ old('book_code', $books->book_code) }}" placeholder="Code Book"
-                    autofocus readonly>
+                    id="book_code" value="{{ old('book_code', $books->book_code) }}" placeholder="Code Book" autofocus readonly>
                 @error('book_code')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
@@ -31,32 +30,35 @@
             </div>
 
             <div class="mb-3">
-                <label for="images" class="form-label"><Strong>Cover</Strong></label>
-                <input type="file" class="form-control @error('images', $books->cover) is-invalid @enderror" name="images" id="images"
-                    placeholder="Cover Book">
+                <label for="images" class="form-label d-block"><Strong>Cover</Strong></label>
+                @if ($books->cover)
+                <img src="{{ asset('/storage/cover/'.$books->cover) }}" class="col-sm-3 mb-3" alt="{{ $books->title }}" height="200">
+                @else
+                <img src="{{ asset('/images/notfound.png') }}" class="col-sm-3 mb-3"  alt="{{ $books->title }}" height="200">
+                @endif
+
+                <img class="img-preview img-fluid col-sm-3 my-3">
+                <input type="hidden" name="oldImage" value="{{ $books->cover }}">
+                <input type="file" class="form-control @error('images', $books->cover) is-invalid @enderror"
+                    name="images" id="images" placeholder="Cover Book" onchange="previewImage()">
                 @error('images')
-                <div class="invalid-feedback">{{ $message }}</div>
+                    <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
 
-            <div class="mb-3">
+            {{-- <div class="mb-3">
                 <label for="images" class="form-label d-block"><Strong>Current Images</Strong></label>
-                @if ($books->cover !=  '')
-                    <img src="{{ asset('/storage/cover/'.$books->cover) }}" alt="{{ $books->cover }}" height="200">
-                @else
-                    <img src="{{ asset('/images/113876_f.jpg') }}" alt="{{ $books->cover }}" height="200">
-                @endif
-            </div>
+            </div> --}}
 
             <div class="mb-3">
                 <label for="category" class="form-label"><Strong>Category</Strong></label>
                 <select name="categories[]" id="category" class="form-select select-multiple" multiple>
                     @foreach($categories as $items)
-                        <option value="{{ $items->id }}">{{ $items->name }}</option>
+                    <option value="{{ $items->id }}">{{ $items->name }}</option>
                     @endforeach
                 </select>
                 @error('categories')
-                    <div class="invalid-feedback">{{ $message }}</div>
+                <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
 
@@ -64,11 +66,11 @@
                 <label for="category" class="form-label"><Strong>Current Category</Strong></label>
                 <ul>
                     @foreach ($books->categories as $category)
-                        <li>{{ $category->name }}</li>
+                    <li>{{ $category->name }}</li>
                     @endforeach
                 </ul>
                 @error('categories')
-                    <div class="invalid-feedback">{{ $message }}</div>
+                <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
 
@@ -79,12 +81,28 @@
         </form>
     </div>
 </div>
+@endsection
 
+@section('js')
 <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script>
     $(document).ready(function () {
         $('.select-multiple').select2();
     });
+
+    function previewImage() {
+        const image = document.getElementById('images');
+        const imgPreview = document.querySelector('.img-preview');
+
+        imgPreview.style.display = 'block';
+        const oFReader = new FileReader();
+        oFReader.readAsDataURL(image.files[0]);
+
+        oFReader.onload = function (oFREvent) {
+            imgPreview.src = oFREvent.target.result;
+        }
+    }
+
 </script>
 @endsection

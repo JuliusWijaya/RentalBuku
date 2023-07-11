@@ -5,8 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Book;
 use App\Models\Category;
-
-use function Ramsey\Uuid\v1;
+use Illuminate\Support\Facades\Storage;
 
 class BookController extends Controller
 {
@@ -37,6 +36,8 @@ class BookController extends Controller
             'title'         => 'required|max:60',
         ]);
 
+        $newName = '';
+
         if ($request->file('images')) {
             $extension = $request->file('images')->getClientOriginalExtension();
             $newName = $request->title . '-' . now()->timestamp . '.' . $extension;
@@ -49,6 +50,10 @@ class BookController extends Controller
         $book->categories()->sync($request->categories);
 
         return redirect('/books')->with('success', 'Successfully add New Book');
+    }
+
+    public function show()
+    {
     }
 
     public function edit($slug)
@@ -65,20 +70,25 @@ class BookController extends Controller
 
     public function update(Request $request, Book $book)
     {
-        $validateData = $request->validate([
+        $rules = [
             'book_code'     => 'required|max:13',
             'title'         => 'required|max:60',
-        ]);
+            'images'        => 'image|mimes:jpg,png,jpeg',
+        ];
 
-        $newName = '';
 
         if ($request->file('images')) {
+            if ($request->oldImage) {
+                Storage::delete($request->oldImage);
+            }
+
             $extension = $request->file('images')->getClientOriginalExtension();
             $newName = $request->title . '-' . now()->timestamp . '.' . $extension;
             $request->file('images')->storeAs('cover', $newName);
+            $request['cover'] = $newName;
         }
 
-        $validateData['cover'] = $newName;
+        $validateData = $request->validate($rules);
         $books = Book::where('id', $book->id)->first();
         $books->update($request->post());
 
@@ -94,5 +104,23 @@ class BookController extends Controller
         Book::destroy($book->id);
 
         return redirect('/books')->with('success', 'Delete Book successfully');
+    }
+
+    public function deleteBook()
+    {
+        $books = Book::onlyTrashed()->get();
+
+        return view('books.delete', [
+            'title'     => 'Rental Buku | List Delete',
+            'books'     => $books,
+        ]);
+    }
+
+    public function restoreBook($slug)
+    {
+        $books = Book::withTrashed()->where('slug', $slug)->first();
+        $books->restore();
+
+        return redirect('/books')->with('success', 'Restore Book successfully');
     }
 }

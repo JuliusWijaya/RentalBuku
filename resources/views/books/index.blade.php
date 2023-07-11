@@ -5,11 +5,12 @@
 <hr>
 
 <div class="text-end">
-    <a href="{{ route('books.create') }}" class="btn btn-primary">Add Book</a>
+    <a href="{{ route('books.create') }}" class="btn btn-primary me-2">Add Book</a>
+    <a href="/book/list-delete" class="btn btn-secondary">View Delete</a>
 </div>
 
 @if (session()->has('success'))
-    <div class="alert alert-success alert-dismissible fade show col-10" role="alert">
+    <div class="alert alert-success alert-dismissible fade show col-10 mt-3" role="alert">
         <strong>{{ session('success') }}</strong>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
