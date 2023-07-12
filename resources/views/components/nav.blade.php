@@ -20,7 +20,10 @@
                     @if (auth()->user()->role_id == 1)
                         <a href="/dashboard" class="links {{ (Request::is('dashboard*') ? 'active' : '') }}">Dashboard</a>
                         <a href="/books" class="links {{ (Request::is('books*') ? 'active' : '') }}">Books</a>
-                        <a href="/categories" class="links {{ (Request::is('categories*') ? 'active' : '') }}">Categories</a>
+                        <a href="/categories" class="links {{ (Request::is('categories*') ? 'active' : '')}} 
+                            {{ (Request::is('category*') ? 'active' : '') }}">
+                            Categories
+                        </a>
                         <a href="/users" class="links {{ (Request::is('users*') ? 'active' : '') }}">User</a>
                         <a href="/rent-logs" class="links {{ (Request::is('rent-logs*') ? 'active' : '') }}">Rent Log</a>
                         <a href="/logout" class="links {{ (Request::is('logout*') ? 'active' : '') }}">Logout</a>

@@ -32,7 +32,7 @@ Route::middleware('guest')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('dashboard', [DashboardController::class, 'index'])->middleware('only_admin');
-    Route::get('profile', [UserController::class, 'index'])->middleware('only_client');
+    Route::get('profile', [UserController::class, 'profile'])->middleware('only_client');
 
     Route::resource('books', BookController::class);
     Route::get('/books/{slug}/edit', [BookController::class, 'edit']);
@@ -45,6 +45,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/category/{slug}/restore', [CategoryController::class, 'restore']);
 
     Route::get('users', [UserController::class, 'index']);
+    Route::get('/users/active-user', [UserController::class, 'active']);
+    Route::get('/users/{slug}/detail', [UserController::class, 'show']);
+    Route::get('/users/{slug}/approve', [UserController::class, 'update']);
+    Route::delete('/users/{slug}/delete', [UserController::class, 'destroy']);
+    Route::get('/users/list-delete', [UserController::class, 'deleteUser']);
+    Route::get('/users/{slug}/restore', [UserController::class, 'restore']);
+
     Route::get('rent-logs', [RentLogController::class, 'index']);
     Route::get('logout', [AuthenticatingController::class, 'logout'])->name('logout');
 });

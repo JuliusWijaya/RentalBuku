@@ -42,7 +42,9 @@
                     </td>
                     <td>{{ $book->status }}</td>
                     <td>
-                        <a href="/books/{{ $book->slug }}/edit" class="btn btn-warning me-2"><i class="bi bi-pencil-square"></i></a>
+                        <a href="/books/{{ $book->slug }}/edit" class="btn btn-warning me-2">
+                            <i class="bi bi-pencil-square"></i>
+                        </a>
                         <!-- Button trigger modal -->
                         <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                             data-bs-target="#exampleModal{{ $book->slug }}">

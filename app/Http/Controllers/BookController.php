@@ -70,12 +70,11 @@ class BookController extends Controller
 
     public function update(Request $request, Book $book)
     {
-        $rules = [
+        $request->validate([
             'book_code'     => 'required|max:13',
             'title'         => 'required|max:60',
             'images'        => 'image|mimes:jpg,png,jpeg',
-        ];
-
+        ]);
 
         if ($request->file('images')) {
             if ($request->oldImage) {
@@ -88,7 +87,6 @@ class BookController extends Controller
             $request['cover'] = $newName;
         }
 
-        $validateData = $request->validate($rules);
         $books = Book::where('id', $book->id)->first();
         $books->update($request->post());
 

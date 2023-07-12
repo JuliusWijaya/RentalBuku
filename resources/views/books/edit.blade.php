@@ -31,14 +31,14 @@
 
             <div class="mb-3">
                 <label for="images" class="form-label d-block"><Strong>Cover</Strong></label>
+                <input type="hidden" name="oldImage" id="oldImage" value="{{ $books->cover }}">
+                
                 @if ($books->cover)
-                <img src="{{ asset('/storage/cover/'.$books->cover) }}" class="col-sm-3 mb-3" alt="{{ $books->title }}" height="200">
+                <img src="{{ asset('/storage/cover/'.$books->cover) }}" class="img-preview img-fluid col-sm-3 mb-3" alt="{{ $books->title }}" height="200">
                 @else
-                <img src="{{ asset('/images/notfound.png') }}" class="col-sm-3 mb-3"  alt="{{ $books->title }}" height="200">
+                <img src="{{ asset('/images/notfound.png') }}" class="img-preview img-fluid col-sm-3 mb-3"  alt="{{ $books->title }}" height="200">
                 @endif
-
-                <img class="img-preview img-fluid col-sm-3 my-3">
-                <input type="hidden" name="oldImage" value="{{ $books->cover }}">
+  
                 <input type="file" class="form-control @error('images', $books->cover) is-invalid @enderror"
                     name="images" id="images" placeholder="Cover Book" onchange="previewImage()">
                 @error('images')
