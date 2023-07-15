@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class PagesController extends Controller
@@ -21,13 +22,25 @@ class PagesController extends Controller
         ]);
     }
 
-    public function listBook()
+    public function listBook(Request $request)
     {
-        $listBooks = Book::all();
+        $listCategory = Category::all();
+
+        if ($request->category || $request->title) {
+            $listBooks = Book::where('title', 'like', '%' . $request->title . '%')
+                ->orWhereHas(
+                    'categories',
+                    fn ($query) =>
+                    $query->where('categories.id', $request->category)
+                )->get();
+        } else {
+            $listBooks = Book::all();
+        }
 
         return view('pages.list-book', [
-            'title'     => 'Rental Buku | List Book',
-            'books'     => $listBooks,
+            'title'        => 'Rental Buku | List Book',
+            'books'        => $listBooks,
+            'category'     => $listCategory,
         ]);
     }
 }
