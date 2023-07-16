@@ -26,6 +26,7 @@
                         </a>
                         <a href="/users" class="links {{ (Request::is('users*') ? 'active' : '') }}">User</a>
                         <a href="/rent-logs" class="links {{ (Request::is('rent-logs*') ? 'active' : '') }}">Rent Log</a>
+                        <a href="/book-rents" class="links {{ (Request::is('book-rents*') ? 'active' : '') }}">Book Rent</a>
                         <a href="/logout" class="links {{ (Request::is('logout*') ? 'active' : '') }}">Logout</a>
                     @else
                         <a href="/profile" class="links {{ (Request::is('profile*') ? 'active' : '') }}">Profile</a>

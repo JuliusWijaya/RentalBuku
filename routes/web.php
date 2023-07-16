@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthenticatingController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\BookRentController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PagesController;
@@ -58,6 +59,8 @@ Route::middleware('auth')->group(function () {
         Route::delete('/users/{slug}/delete', [UserController::class, 'destroy']);
         Route::get('/users/list-delete', [UserController::class, 'deleteUser']);
         Route::get('/users/{slug}/restore', [UserController::class, 'restore']);
+
+        Route::resource('book-rents', BookRentController::class);
 
         Route::get('rent-logs', [RentLogController::class, 'index']);
     });

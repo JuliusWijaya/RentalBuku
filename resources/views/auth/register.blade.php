@@ -29,7 +29,7 @@
             </div>
             <div>
                 <label for="address">Address</label>
-                <textarea class="form-control @error('address') is-invalid @enderror" id="address" name="address" rows="3" required></textarea>
+                <textarea class="form-control @error('address') is-invalid @enderror" id="address" name="address" rows="3" required style="resize: none;"></textarea>
                 @error('address')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
