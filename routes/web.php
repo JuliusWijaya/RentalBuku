@@ -8,6 +8,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\RentLogController;
 use App\Http\Controllers\UserController;
+use App\Models\RentLog;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -61,6 +62,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/users/{slug}/restore', [UserController::class, 'restore']);
 
         Route::resource('book-rents', BookRentController::class);
+        Route::get('/book-return', [BookRentController::class, 'returnBook']);
+        Route::post('/book-return', [BookRentController::class, 'returnBookAction']);
 
         Route::get('rent-logs', [RentLogController::class, 'index']);
     });

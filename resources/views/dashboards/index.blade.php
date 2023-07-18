@@ -2,6 +2,7 @@
 
 @section('content')
 <h3>Welcome, {{ auth()->user()->username }}</h3>
+
 <div class="row mt-4">
     <div class="col-lg-4">
         <div class="card-data book">
@@ -45,24 +46,7 @@
 
     <div class="mt-4">
         <h2>#Rent Log</h2>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>NO</th>
-                    <th>NAME</th>
-                    <th>TITLE BOOK</th>
-                    <th>RENT DATE</th>
-                    <th>RETURN DATE</th>
-                    <th>ACTUAL DATE</th>
-                    <th>STATUS</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td colspan="7" class="text-center text-danger fs-5 fw-semibold">No Data</td>
-                </tr>
-            </tbody>
-        </table>
+        <x-rent-log-table :rentlog="$rentlogs"></x-rent-log-table>
     </div>
 </div>
 @endsection

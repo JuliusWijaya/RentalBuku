@@ -4,18 +4,18 @@
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
 <div class="row">
-    <div class="col-12 col-md-6 col-lg-6 offset-md-3">
-        <h2 class="text-center">Book Rent</h2>
+    <div class="col-12 col-md-6 col-lg-8 offset-md-2">
+        <h2 class="text-center">Book Return</h2>
         <hr>
 
         @if(Session::has('status'))
             <div class="alert {{ Session::get('alert-class') }}">
                 <strong>{{ Session::get('status') }}</strong>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                <button type="button" class="btn-close me-5" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         @endif
-    
-        <form action="{{ route('book-rents.store') }}" method="POST">
+
+        <form action="{{ url('book-return') }}" method="POST">
             @csrf
             <div class="mb-3">
                 <label for="user_id" class="form-label d-block">Username</label>
@@ -36,7 +36,7 @@
                 <select name="book_id" id="book_id" class="form-select @error('book_id') is-invalid @enderror book-box">
                     <option value="">Choose Book</option>
                     @foreach ($books as $book)
-                    <option value="{{ $book->id }}">{{ $book->title }}</option>
+                    <option value="{{ $book->id }}">{{ $book->book_code }} {{ $book->title }}</option>
                     @endforeach
                 </select>
                 @error ('book_id')

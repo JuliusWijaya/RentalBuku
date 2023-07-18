@@ -24,7 +24,7 @@ body {
     color: #fff;
 }
 
-.active {
+.actived {
     border-radius: 0 25px 25px 0;
     border-left: 5px solid salmon;
     background-color: #838080;

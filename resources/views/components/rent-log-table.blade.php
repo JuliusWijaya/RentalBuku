@@ -8,6 +8,7 @@
                 <th>RENT DATE</th>
                 <th>RETURN DATE</th>
                 <th>ACTUAL RETURN DATE</th>
+                <th>STATUS</th>
             </tr>
         </thead>
         @if ($rentlog->count())
@@ -22,6 +23,7 @@
                 <td>{{ $rent->rent_date }}</td>
                 <td>{{ $rent->return_date }}</td>
                 <td>{{ $rent->actual_return_date }}</td>
+                <td>{{ $rent->book->status }}</td>
             </tr>
             @endforeach
             @else

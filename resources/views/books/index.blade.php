@@ -1,6 +1,10 @@
 @extends('layouts.main')
 
 @section('content')
+{{-- DataTables --}}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap5.min.css">
+
 <h2 class="text-center">List Book</h2>
 <hr>
 
@@ -10,15 +14,15 @@
 </div>
 
 @if (session()->has('success'))
-    <div class="alert alert-success alert-dismissible fade show col-10 mt-3" role="alert">
-        <strong>{{ session('success') }}</strong>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
+<div class="alert alert-success alert-dismissible fade show col-10 mt-3" role="alert">
+    <strong>{{ session('success') }}</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
 @endif
 
 <div class="row mt-4">
     <div class="col-lg-10">
-        <table class="table table-hover">
+        <table class="table table-hover" id="example">
             <thead>
                 <tr>
                     <th>NO</th>
@@ -37,7 +41,7 @@
                     <td>{{ $book->title }}</td>
                     <td>
                         @foreach ($book->categories as $category)
-                            {{ $category->name }} <br>
+                        {{ $category->name }} <br>
                         @endforeach
                     </td>
                     <td>{{ $book->status }}</td>
@@ -84,4 +88,13 @@
         </table>
     </div>
 </div>
+@endsection
+
+@section('js')
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js"></script>
+<script>
+    new DataTable('#example');
+</script>
 @endsection

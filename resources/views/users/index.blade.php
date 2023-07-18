@@ -1,6 +1,10 @@
 @extends('layouts.main')
 
 @section('content')
+{{-- DataTables --}}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap5.min.css">
+
 <h2 class="text-center">List User Active</h2>
 <hr>
 <div class="text-end">
@@ -15,9 +19,9 @@
 </div>
 @endif
 
-<div class="row mt-4">
+<div class="row justify-content-center mt-4">
     <div class="col-lg-10">
-        <table class="table table-hover">
+        <table class="table table-hover" id="example">
             <thead>
                 <tr>
                     <th>NO</th>
@@ -74,4 +78,13 @@
         </table>
     </div>
 </div>
+@endsection
+
+@section('js')
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js"></script>
+<script>
+    new DataTable('#example');
+</script>
 @endsection

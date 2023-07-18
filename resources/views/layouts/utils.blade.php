@@ -37,9 +37,15 @@
                           {{ auth()->user()->username }}
                         </a>
                         <ul class="dropdown-menu">
-                          <li>
-                            <a class="dropdown-item {{ Request::is('profile') ? 'active' : '' }}" href="/profile">Profile</a>
-                          </li>
+                            @if(auth()->user()->role_id == 1)
+                            <li>
+                              <a class="dropdown-item {{ Request::is('dashboard') ? 'active' : '' }}" href="/dashboard">Dashbord</a>
+                            </li>
+                            @else
+                            <li>
+                              <a class="dropdown-item {{ Request::is('profile') ? 'active' : '' }}" href="/profile">Profile</a>
+                            </li>
+                            @endif
                           <li><hr class="dropdown-divider"></li>
                           <li>
                             <a class="dropdown-item {{ Request::is('logout') ? 'active' : '' }}" href="/logout">Logout</a>

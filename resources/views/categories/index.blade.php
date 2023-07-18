@@ -1,6 +1,10 @@
 @extends('layouts.main')
 
 @section('content')
+{{-- DataTables --}}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap5.min.css">
+
 <h2 class="text-center">Categories</h2>
 <hr>
 <div class="d-flex justify-content-end">
@@ -8,16 +12,16 @@
     <a href="/category/list-delete" class="btn btn-secondary">View Delete</a>
 </div>
 
-<div class="row mt-5 justify-content-start">
-    <div class="col-lg-8">
+<div class="row mt-3 justify-content-start px-5">
+    <div class="col-12 col-md-6 col-lg-10">
         @if (session('success'))
-        <div class="alert alert-success alert-dismissible fade show">
-            <span class="fw-bold">{{ session('success') }}</span>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
+            <div class="alert alert-success alert-dismissible fade show">
+                <span class="fw-bold">{{ session('success') }}</span>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
         @endif
 
-        <table class="table table-bordered table-hover">
+        <table class="table table-hover" id="example">
             <thead>
                 <tr>
                     <th class="text-center">NO</th>
@@ -74,4 +78,13 @@
         </table>
     </div>
 </div>
+@endsection
+
+@section('js')
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js"></script>
+<script>
+    new DataTable('#example');
+</script>
 @endsection

@@ -22,7 +22,7 @@ class BookRentController extends Controller
     {
         $user = User::where('role_id', '!=', 1)
             ->where('status', 'active')->get();
-        $book = Book::all();
+        $book = Book::latest()->get();
 
         return view('book-rents.index', [
             'title'     => 'Rental Buku | Book Rent',
@@ -84,7 +84,6 @@ class BookRentController extends Controller
                 DB::commit();
             } catch (\Throwable $th) {
                 DB::rollBack();
-                dd($th);
             }
         }
 
@@ -92,6 +91,52 @@ class BookRentController extends Controller
         Session::flash('alert-class', 'alert-success');
 
         return redirect('/book-rents');
+    }
+
+    public function returnBook()
+    {
+        $user = User::where('role_id', '!=', 1)
+            ->where('status', 'active')->get();
+        $book = Book::latest()->get();
+
+        return view('book-return.index', [
+            'title'     => 'Rental Buku | Book Return',
+            'users'     => $user,
+            'books'     => $book,
+        ]);
+    }
+
+    public function returnBookAction(Request $request)
+    {
+        $request->validate([
+            'user_id'   => 'required',
+            'book_id'   => 'required',
+        ]);
+
+        $rent = RentLog::where('user_id', $request->user_id)
+            ->where('book_id', $request->book_id)->where('actual_return_date', null);
+        $rentData = $rent->first();
+        $countData = $rent->count();
+
+        // User dan buku yang dipilih untuk direturn benar, maka berhasil return book
+        if ($countData == 1) {
+            $rentData->actual_return_date = Carbon::now()->toDateString();
+            $rentData->save();
+
+            $books = Book::where('id', $request->book_id)->first();
+            $books->status = 'in stock';
+            $books->save();
+
+            Session::flash('status', 'Return book successfully');
+            Session::flash('alert-class', 'alert-success');
+
+            return redirect('/book-return');
+        } else {
+            // User dan buku yang dipilih untuk direturn salah, maka akan muncul notifikasi / alert
+            Session::flash('status', 'Return book failed');
+            Session::flash('alert-class', 'alert-danger');
+            return redirect('/book-return');
+        }
     }
 
     /**

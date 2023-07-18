@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\RentLog;
-use Illuminate\Http\Request;
+use App\Models\Book;
 use App\Models\User;
+use App\Models\RentLog;
+use App\Models\Category;
+use Illuminate\Http\Request;
 
 class UserController extends Controller
 {

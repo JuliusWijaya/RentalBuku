@@ -18,19 +18,22 @@
         <div class="row g-0 h-100">
             <div class="sidebar col-lg-2 collapse d-lg-block text-white" id="navbarNav">
                     @if (auth()->user()->role_id == 1)
-                        <a href="/dashboard" class="links {{ (Request::is('dashboard*') ? 'active' : '') }}">Dashboard</a>
-                        <a href="/books" class="links {{ (Request::is('books*') ? 'active' : '') }}">Books</a>
-                        <a href="/categories" class="links {{ (Request::is('categories*') ? 'active' : '')}} 
-                            {{ (Request::is('category*') ? 'active' : '') }}">
+                        <a href="/dashboard" class="links {{ (Request::is('dashboard*') ? 'actived' : '') }}">Dashboard</a>
+                        <a href="/books" class="links {{ (Request::is('books*') ? 'actived' : '') }}">Books</a>
+                        <a href="/categories" class="links {{ (Request::is('categories*') ? 'actived' : '')}} 
+                            {{ (Request::is('category*') ? 'actived' : '') }}">
                             Categories
                         </a>
-                        <a href="/users" class="links {{ (Request::is('users*') ? 'active' : '') }}">User</a>
-                        <a href="/rent-logs" class="links {{ (Request::is('rent-logs*') ? 'active' : '') }}">Rent Log</a>
-                        <a href="/book-rents" class="links {{ (Request::is('book-rents*') ? 'active' : '') }}">Book Rent</a>
-                        <a href="/logout" class="links {{ (Request::is('logout*') ? 'active' : '') }}">Logout</a>
+                        <a href="/list-books" class="links {{ (Request::is('list-books*') ? 'actived' : '') }}">List Book</a>
+                        <a href="/users" class="links {{ (Request::is('users*') ? 'actived' : '') }}">User</a>
+                        <a href="/rent-logs" class="links {{ (Request::is('rent-logs*') ? 'actived' : '') }}">Rent Log</a>
+                        <a href="/book-rents" class="links {{ (Request::is('book-rents*') ? 'actived' : '') }}">Book Rent</a>
+                        <a href="/book-return" class="links {{ (Request::is('book-return*') ? 'actived' : '') }}">Book Return</a>
+                        <a href="/logout" class="links {{ (Request::is('logout*') ? 'actived' : '') }}">Logout</a>
                     @else
-                        <a href="/profile" class="links {{ (Request::is('profile*') ? 'active' : '') }}">Profile</a>
-                        <a href="/logout" class="links {{ (Request::is('logout*') ? 'active' : '') }}">Logout</a>
+                        <a href="/profile" class="links {{ (Request::is('profile*') ? 'actived' : '') }}">Profile</a>
+                        <a href="/list-books" class="links {{ (Request::is('list-books*') ? 'actived' : '') }}">List Book</a>
+                        <a href="/logout" class="links {{ (Request::is('logout*') ? 'actived' : '') }}">Logout</a>
                     @endif
             </div>
             <div class="content col-lg-9 p-4">
