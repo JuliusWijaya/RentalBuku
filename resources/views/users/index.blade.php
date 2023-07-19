@@ -12,14 +12,15 @@
     <a href="/users/list-delete" class="btn btn-info">List Banned User</a>
 </div>
 
-@if (session()->has('success'))
-<div class="alert alert-success alert-dismissible fade show col-10 mt-3" role="alert">
-    <strong>{{ session('success') }}</strong>
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>
-@endif
 
 <div class="row justify-content-center mt-4">
+    @if (session()->has('success'))
+    <div class="alert alert-success alert-dismissible fade show col-lg-10 mt-3" role="alert">
+        <strong>{{ session('success') }}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    @endif
+    
     <div class="col-lg-10">
         <table class="table table-hover" id="example">
             <thead>

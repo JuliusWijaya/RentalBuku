@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap5.min.css">
 
-<h2 class="text-center">List Book</h2>
+<h2 class="text-center">Book</h2>
 <hr>
 
 <div class="text-end">
@@ -20,8 +20,8 @@
 </div>
 @endif
 
-<div class="row mt-4">
-    <div class="col-lg-10">
+<div class="row px-5 mt-4">
+    <div class="col-sm-12 col-md-8 col-lg-11">
         <table class="table table-hover" id="example">
             <thead>
                 <tr>
@@ -44,7 +44,9 @@
                         {{ $category->name }} <br>
                         @endforeach
                     </td>
-                    <td>{{ $book->status }}</td>
+                    <td 
+                    class="{{ ($book->status == 'in stock') ? 'text-success fw-semibold' : 'text-danger fw-semibold' }}">    {{ $book->status }}
+                    </td>
                     <td>
                         <a href="/books/{{ $book->slug }}/edit" class="btn btn-warning me-2">
                             <i class="bi bi-pencil-square"></i>

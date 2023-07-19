@@ -46,7 +46,7 @@
 
     <div class="mt-4">
         <h2>#Rent Log</h2>
-        <x-rent-log-table :rentlog="$rentlogs"></x-rent-log-table>
+        <x-rent-log-table :rentlog='$rentlogs'></x-rent-log-table>
     </div>
 </div>
 @endsection

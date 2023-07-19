@@ -34,7 +34,7 @@ class PagesController extends Controller
                     $query->where('categories.id', $request->category)
                 )->get();
         } else {
-            $listBooks = Book::all();
+            $listBooks = Book::latest()->paginate(8);
         }
 
         return view('pages.list-book', [

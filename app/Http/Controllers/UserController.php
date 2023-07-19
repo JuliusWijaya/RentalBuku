@@ -33,7 +33,7 @@ class UserController extends Controller
     public function show($slug)
     {
         $user = User::where('slug', $slug)->first();
-        $rentlog = RentLog::with(['user', 'book'])->where('user_id', $user->id)->get();
+        $rentlog = RentLog::with(['user', 'book'])->where('user_id', $user->id)->paginate(5);
 
         return view('users.detail', [
             'title'     => 'Rental Buku | ' . $user->username,
@@ -53,7 +53,7 @@ class UserController extends Controller
 
     public function profile()
     {
-        $rentlog = RentLog::with(['user', 'book'])->where('user_id', auth()->user()->id)->get();
+        $rentlog = RentLog::with(['user', 'book'])->where('user_id', auth()->user()->id)->paginate(5);
 
         return view('profiles.index', [
             'title'     => 'Rental Buku | User Profile',

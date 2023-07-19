@@ -9,7 +9,7 @@ class RentLogController extends Controller
 {
     public function index()
     {
-        $rentLogs = RentLog::with(['user', 'book'])->get();
+        $rentLogs = RentLog::with(['user', 'book'])->paginate(10);
 
         return view('rent-logs.index', [
             'title'     => 'Rental Buku | Rent Log',

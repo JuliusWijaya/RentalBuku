@@ -14,8 +14,8 @@
     </div>
 @endif
 
-<div class="row mt-4">
-    <div class="col-lg-10">
+<div class="row justify-content-center mt-4">
+    <div class="col-md-8 col-lg-10">
         <table class="table table-hover">
             <thead>
                 <tr>

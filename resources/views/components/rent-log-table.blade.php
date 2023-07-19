@@ -13,11 +13,11 @@
         </thead>
         @if ($rentlog->count())
         <tbody>
-            @foreach ($rentlog as $rent)
+            @foreach ($rentlog as $key => $rent)
             <tr
               class="{{ $rent->actual_return_date == null ? '' :
                ($rent->return_date < $rent->actual_return_date ? 'text-bg-danger' : 'text-bg-success') }}">
-                <td>{{ $loop->iteration }}</td>
+                <td>{{ ($rentlog->currentpage()-1) * $rentlog->perpage() + $key + 1 }}</td>
                 <td>{{ $rent->user->username }}</td>
                 <td>{{ $rent->book->title }}</td>
                 <td>{{ $rent->rent_date }}</td>
@@ -28,9 +28,13 @@
             @endforeach
             @else
             <tr>
-                <td colspan="6" class="text-center text-danger fw-semibold">Rent Logs Not Found</td>
+                <td colspan="7" class="text-center text-danger fw-semibold">Rent Logs Not Found</td>
             </tr>
         </tbody>
         @endif
     </table>
+
+    <div>
+        {{ $rentlog->links() }}
+    </div>
 </div>
