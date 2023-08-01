@@ -41,7 +41,7 @@
                     <td>{{ $book->title }}</td>
                     <td>
                         @foreach ($book->categories as $category)
-                        {{ $category->name }} <br>
+                            {{ $category->name }} <br>
                         @endforeach
                     </td>
                     <td 

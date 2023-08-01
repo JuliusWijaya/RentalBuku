@@ -35,9 +35,6 @@
                         <a href="/users/{{ $user->slug }}/detail" class="btn btn-warning me-2">
                             <i class="bi bi-eye-fill"></i>
                         </a>
-                        <a href="#" class="btn btn-info">
-                            <i class="bi bi-app-indicator"></i>
-                        </a>
                     </td>
                 </tr>
                 @endforeach

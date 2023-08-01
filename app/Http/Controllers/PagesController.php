@@ -32,7 +32,7 @@ class PagesController extends Controller
                     'categories',
                     fn ($query) =>
                     $query->where('categories.id', $request->category)
-                )->get();
+                )->paginate(8);
         } else {
             $listBooks = Book::latest()->paginate(8);
         }

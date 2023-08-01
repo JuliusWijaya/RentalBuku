@@ -9,44 +9,50 @@
         <hr>
 
         @if(Session::has('status'))
-            <div class="alert {{ Session::get('alert-class') }}">
-                <strong>{{ Session::get('status') }}</strong>
-                <button type="button" class="btn-close me-5" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
+        <div class="alert {{ Session::get('alert-class') }}">
+            <strong>{{ Session::get('status') }}</strong>
+            <button type="button" class="btn-close me-5" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
         @endif
 
-        <form action="{{ url('book-return') }}" method="POST">
-            @csrf
-            <div class="mb-3">
-                <label for="user_id" class="form-label d-block">Username</label>
-                <select name="user_id" id="user_id" class="form-select @error('user_id') is-invalid @enderror user-box">
-                    <option value="">Choose User</option>
-                    @foreach ($users as $user)
-                    <option value="{{ $user->id }}">{{ $user->username }}</option>
-                    @endforeach
-                </select>
-                @error ('user_id')
-                    <div class="invalid-feedback">
-                        {{ $message }}
+        <div class="card mt-5">
+            <div class="card-body">
+                <form action="{{ url('book-return') }}" method="POST">
+                    @csrf
+                    <div class="mb-3">
+                        <label for="user_id" class="form-label d-block">Username</label>
+                        <select name="user_id" id="user_id"
+                            class="form-select @error('user_id') is-invalid @enderror user-box">
+                            <option value="">Choose User</option>
+                            @foreach ($users as $user)
+                            <option value="{{ $user->id }}">{{ $user->username }}</option>
+                            @endforeach
+                        </select>
+                        @error ('user_id')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
                     </div>
-                @enderror
-            </div>
-            <div class="mb-3">
-                <label for="book_id" class="form-label">Book Title</label>
-                <select name="book_id" id="book_id" class="form-select @error('book_id') is-invalid @enderror book-box">
-                    <option value="">Choose Book</option>
-                    @foreach ($books as $book)
-                    <option value="{{ $book->id }}">{{ $book->book_code }} {{ $book->title }}</option>
-                    @endforeach
-                </select>
-                @error ('book_id')
-                    <div class="invalid-feedback">
-                        {{ $message }}
+                    <div class="mb-3">
+                        <label for="book_id" class="form-label">Book Title</label>
+                        <select name="book_id" id="book_id"
+                            class="form-select @error('book_id') is-invalid @enderror book-box">
+                            <option value="">Choose Book</option>
+                            @foreach ($books as $book)
+                            <option value="{{ $book->id }}">{{ $book->book_code }} {{ $book->title }}</option>
+                            @endforeach
+                        </select>
+                        @error ('book_id')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
                     </div>
-                @enderror
+                    <button type="submit" class="btn btn-primary w-100 mt-3">Save</button>
+                </form>
             </div>
-            <button type="submit" class="btn btn-primary w-100 mt-3">Save</button>
-        </form>
+        </div>
     </div>
 </div>
 @endsection
@@ -59,5 +65,6 @@
         $('.user-box').select2();
         $('.book-box').select2();
     });
+
 </script>
 @endsection
