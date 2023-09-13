@@ -8,6 +8,7 @@
             @csrf
             <div>
                 <label for="username">Username</label>
+                <i class="bi bi-person-fill" style="position: absolute; right: 556px; top: 218px;"></i>
                 <input type="text" name="username" id="username" class="form-control @error('username') is-invalid @enderror" required autofocus>
                 @error('username')
                     <div class="invalid-feedback">{{ $message }}</div>
@@ -15,6 +16,8 @@
             </div>
             <div>
                 <label for="password">Password</label>
+                <i class="bi bi-eye-fill" style="position: absolute; right: 556px; top: 295px;"></i>
+                <i class="bi bi-eye-slash-fill" style="position: absolute; right: 556px; top: 295px;"></i>
                 <input type="password" name="password" id="password" class="form-control @error('password') is-invalid @enderror" required>
                 @error('password')
                     <div class="invalid-feedback">{{ $message }}</div>
@@ -22,6 +25,7 @@
             </div>
             <div>
                 <label for="phone">Phone</label>
+                <i class="bi bi-telephone-fill" style="position: absolute; right: 556px; top: 372px;"></i>
                 <input type="number" name="phone" id="phone" class="form-control @error('phone') is-invalid @enderror">
                 @error('phone')
                     <div class="invalid-feedback">{{ $message }}</div>
@@ -41,4 +45,25 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('js')
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.bi-eye-slash-fill').hide();
+
+        $('.bi-eye-fill').click(function(){
+            $('.bi-eye-fill').hide();
+            $('.bi-eye-slash-fill').show();
+            $('#password').attr('type', 'text');
+        })
+
+        $('.bi-eye-slash-fill').click(function(){
+            $('.bi-eye-slash-fill').hide();
+            $('.bi-eye-fill').show();
+            $('#password').attr('type', 'password');
+        })
+    })
+</script>
 @endsection
