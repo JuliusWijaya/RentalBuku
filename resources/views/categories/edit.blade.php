@@ -16,8 +16,8 @@
                 @enderror
             </div>
             <div class="mt-3">
-                <button type="submit" class="btn btn-primary me-3">Update</button>
-                <a href="/categories" class="btn btn-warning">
+                <button type="submit" class="btn btn-primary me-2">Update</button>
+                <a href="/categories" class="btn btn-secondary">
                     Cancel
                 </a>
             </div>

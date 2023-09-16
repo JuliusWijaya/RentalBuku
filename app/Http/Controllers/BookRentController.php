@@ -57,9 +57,10 @@ class BookRentController extends Controller
         $request['rent_date'] = Carbon::now()->toDateString();
         $request['return_date'] = Carbon::now()->addDay(6)->toDateString();
 
-        $bookStatus = Book::where('id', $request->book_id)->pluck('status');
+        $book = Book::where('id', $request->book_id)->pluck('status');
 
-        if ($bookStatus['0'] != 'in stock') {
+        if ($book['0'] != 'in stock') {
+            dd('sedang dipinjam');
             Session::flash('status', 'Cannot Rent The Book is no Availabel !');
             Session::flash('alert-class', 'alert-danger');
             return back();
@@ -90,7 +91,7 @@ class BookRentController extends Controller
         Session::flash('status', 'Rent book successfully');
         Session::flash('alert-class', 'alert-success');
 
-        return redirect('/book-rents');
+        return back();
     }
 
     public function returnBook()
@@ -130,7 +131,7 @@ class BookRentController extends Controller
             Session::flash('status', 'Return book successfully');
             Session::flash('alert-class', 'alert-success');
 
-            return redirect('/book-return');
+            return back();
         } else {
             // User dan buku yang dipilih untuk direturn salah, maka akan muncul notifikasi / alert
             Session::flash('status', 'Return book failed');

@@ -22,7 +22,8 @@
                         <td class="fw-bold">{{ $loop->iteration }}</td>
                         <td>{{ $item->name }}</td>
                         <td>
-                            <a href="/category/{{ $item->slug }}/restore" class="btn btn-info">
+                            <a href="/category/{{ $item->slug }}/restore" class="btn btn-info"
+                                onclick="return confirm('Are You Sure!')">
                                 <i class="bi bi-arrow-clockwise"></i>
                             </a>
                         </td>

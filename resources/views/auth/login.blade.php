@@ -42,7 +42,7 @@
             <button type="submit" class="btn btn-primary form-control">Login</button>
         </form>
         <div class="text-center mt-2">
-            Don't have an account <a href="/register" class="text-decoration-none oke">Sign Up</a>
+            Don't have an account <a href="/register" class="text-decoration-none">Sign Up</a>
         </div>
     </div>
 </div>
