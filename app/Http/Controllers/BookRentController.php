@@ -60,7 +60,6 @@ class BookRentController extends Controller
         $book = Book::where('id', $request->book_id)->pluck('status');
 
         if ($book['0'] != 'in stock') {
-            dd('sedang dipinjam');
             Session::flash('status', 'Cannot Rent The Book is no Availabel !');
             Session::flash('alert-class', 'alert-danger');
             return back();
@@ -90,7 +89,6 @@ class BookRentController extends Controller
 
         Session::flash('status', 'Rent book successfully');
         Session::flash('alert-class', 'alert-success');
-
         return back();
     }
 
@@ -130,7 +128,6 @@ class BookRentController extends Controller
 
             Session::flash('status', 'Return book successfully');
             Session::flash('alert-class', 'alert-success');
-
             return back();
         } else {
             // User dan buku yang dipilih untuk direturn salah, maka akan muncul notifikasi / alert
